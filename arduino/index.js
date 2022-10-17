@@ -1,10 +1,30 @@
 var five = require('johnny-five')
-var board = new five.Board()
+var board = new five.Board({
+    port: 'COM3'
+})
 
+let sw = 0
 board.on('ready', function () {
-    var led = new five.Led(13)
-    led.blink(500)
-
+    var led = new five.Led(2)
+    led.blink(2000)
+    // var Pin8 = new five.Pin(8)
+    
+    
+    // this.loop(2000, () => {
+        // console.log("sw:", sw)
+        
+        
+        // this.digitalWrite(8, sw)
+        
+        // Pin8.write(sw)//D18
+        
+        
+        // if (sw == 0){
+        //     sw = 1
+        // }else {
+        //     sw = 0
+        // }
+    // })
 
 
     //   var A0 = new five.Sensor('A0')
@@ -15,19 +35,5 @@ board.on('ready', function () {
 
 
 
-    //   var D4 = new five.Pin(2)
-    //   // D4.write(payload.actuador.value);//D18
 
-
-    //   var sensor = require('node-dht-sensor');
-
-    //   sensor.read(22, 17, function(err, temperature, humidity) {
-    //       if (!err) {
-    //           console.log('temp: ' + temperature.toFixed(1) + '°C, ' +'humidity: ' + humidity.toFixed(1) + '%');
-    //           temp[57] = temperature.toFixed(1);
-    //           temp[56] = humidity.toFixed(1);
-    //       }
-    //   });
-
-    // this.digitalWrite(13, 0);
 })
