@@ -11,9 +11,9 @@
 	},
 	"author": "",
 	"license": "MIT",
-	"devDependencies": {},
 	"dependencies": {
 		"jsonschema": "^1.2.6",
-		"mosca": "^2.8.3"
+		"mosca": "^2.8.3",
+		"nodemon": "^2.0.20"
 	}
 }

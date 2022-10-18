@@ -12,7 +12,13 @@ server.on('ready', async () => {
 })
 
 server.on('published', async (packet, client) => {
-	console.log(packet.payload)
+	let data = parsePayload(packet.payload)
+	console.log(packet.topic)
+	console.log(data)
+	if (data != null){
+		console.log(data.pin)
+		console.log(data.action)
+	}
     // if (packet.topic == 'monitoring') {
 	// 	let data = parsePayload(packet.payload)
 	// 	console.log(data)
