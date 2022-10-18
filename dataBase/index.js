@@ -2,15 +2,15 @@
 
 const setupDatabase = require('./lib/db')
 
-const setupArduino = require('./lib/sensor')
+const setupSensor = require('./lib/sensor')
 
-const setupArduinoModel = require('./models/sensor')
+const setupSensorModel = require('./models/sensor')
 
 module.exports = async function (config) {
     // Call models
     const sequelize = setupDatabase(config)
 
-    const ArduinoModel = setupArduinoModel(config)
+    const SensorModel = setupSensorModel(config)
 
     // login with base de datos
     await sequelize.authenticate()
@@ -21,9 +21,9 @@ module.exports = async function (config) {
     }
 
     // Export models
-    const Arduino = setupArduino(ArduinoModel)
+    const Sensor = setupSensor(SensorModel)
 
     return {
-        Arduino,
+        Sensor,
     }
 }
