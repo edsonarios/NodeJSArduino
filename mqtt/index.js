@@ -5,8 +5,7 @@ const portServer = 1883
 const server = new mosca.Server({
 	port: portServer
 })
-
-// const { parsePayload } = require('../utils/utils')
+const { parsePayload } = require('./utils')
 
 server.on('ready', async () => {
 	console.log(`Server ready in port: ${portServer}`)
