@@ -1,5 +1,5 @@
 {
-	"name": "broker-node",
+	"name": "mqtt",
 	"version": "1.0.0",
 	"private": true,
 	"description": "MQTT Broker",
@@ -9,7 +9,7 @@
 		"dev": "DEBUG=mod:* nodemon server.js",
 		"lint": "standard"
 	},
-	"author": "",
+	"author": "Edson Añawaya Rios edsonrios9@gmail.com",
 	"license": "MIT",
 	"dependencies": {
 		"jsonschema": "^1.2.6",

@@ -4,7 +4,7 @@ var board = new five.Board({
 })
 
 const mqtt = require('mqtt')
-const client = mqtt.connect('mqtt://127.0.0.1:1883')
+const client = mqtt.connect('mqtt://localhost:1883')
 const { parsePayload } = require('../mqtt/utils')
 
 client.subscribe('arduino')

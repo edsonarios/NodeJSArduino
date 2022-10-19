@@ -6,11 +6,11 @@
   "scripts": {
     "start": "NODE_ENV=production node index.js"
   },
+  "author": "Edson Añawaya Rios edsonrios9@gmail.com",
   "dependencies": {
     "johnny-five": "^2.1.0",
     "mqtt": "^4.3.7"
   },
   "devDependencies": {},
-  "author": "",
   "license": "MIT"
 }
