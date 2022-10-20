@@ -1,5 +1,5 @@
-var five = require('johnny-five')
-var board = new five.Board({
+const five = require('johnny-five')
+const board = new five.Board({
     port: 'COM3'
 })
 
@@ -12,8 +12,8 @@ client.subscribe('arduino')
 board.on('ready', function () {
     client.on('message', (topic, payload) => {
         // mqtt pub -t 'arduino' -h localhost -m '{"pin":2,"action":0}'
-        let data = parsePayload(payload)
-        console.log(data)
-        this.digitalWrite(data.pin, data.action)
+        let mqttData = parsePayload(payload)
+        console.log(mqttData)
+        this.digitalWrite(mqttData.pin, mqttData.action)
     })
 })
