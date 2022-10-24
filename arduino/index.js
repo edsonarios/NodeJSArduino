@@ -27,10 +27,10 @@ parser.on('data', function (data) {
     let datas = data.replace('\r', '').split(' ')
     let mqttData = `{
         "type": "sensor",
-        "humidity": ${datas[0].substring(0, (datas[0].length) - 1)},
-        "temperature": ${datas[1].substring(0, (datas[1].length) - 1)}
+        "pin": ${datas[0].substring(0, (datas[0].length) - 1)},
+        "action": ${datas[1].substring(0, (datas[1].length) - 1)}
     }`
-    client.publish('sensor', mqttData)
+    client.publish('arduino', mqttData)
 })
 
 client.subscribe('arduino')
