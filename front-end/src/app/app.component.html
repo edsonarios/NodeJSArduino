@@ -16,10 +16,10 @@
 
       <nb-card-header>Light</nb-card-header>
       <nb-card-body>
-          <!-- <nb-icon class="nb-lightbulb" icon="star" [options]="{ animation: { type: 'zoom' } }"></nb-icon> -->
-          <!-- <nb-toggle [(ngModel)]="toggleNgModel">Toggle with NgModel</nb-toggle> -->
-          <nb-toggle status="success" checked={{OnOff}} (click)="control()"></nb-toggle>
-          <nb-toggle  (click)="control2()"></nb-toggle>
+        <!-- <nb-icon class="nb-lightbulb" icon="star" [options]="{ animation: { type: 'zoom' } }"></nb-icon> -->
+        <!-- <nb-toggle [(ngModel)]="toggleNgModel">Toggle with NgModel</nb-toggle> -->
+        <nb-toggle checked={{actuatorControl}} status="success" (click)="control(!actuatorState)"></nb-toggle>
+        <!-- <nb-toggle  (click)="control()"></nb-toggle> -->
       </nb-card-body>
     </nb-card>
   </nb-layout-column>

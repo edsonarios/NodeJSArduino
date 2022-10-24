@@ -26,6 +26,7 @@ parser.on('data', function (data) {
     console.log(data)
     let datas = data.replace('\r', '').split(' ')
     let mqttData = `{
+        "type": "sensor",
         "humidity": ${datas[0].substring(0, (datas[0].length) - 1)},
         "temperature": ${datas[1].substring(0, (datas[1].length) - 1)}
     }`
@@ -38,7 +39,9 @@ board.on('ready', function () {
     client.on('message', (topic, payload) => {
         // mqtt pub -t 'arduino' -h localhost -m '{"pin":2,"action":0}'
         let mqttData = parsePayload(payload)
-        console.log(mqttData)
-        this.digitalWrite(mqttData.pin, mqttData.action)
+        if (mqttData.type == 'arduino') {
+            console.log(mqttData)
+            this.digitalWrite(mqttData.pin, mqttData.action)
+        }
     })
 })

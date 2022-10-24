@@ -17,7 +17,8 @@ const io = require("socket.io")(server, {
     }
 })
 const port = parseInt(process.env.SOCKET_PORT) || 1884
-let client
+let client = mqtt.connect('mqtt://localhost:1883')
+client.subscribe('arduino')
 
 io.on('connection', (socket) => {
     socket.on('disconnect', () => {
@@ -27,24 +28,16 @@ io.on('connection', (socket) => {
         console.log('front connected')
     })
 
-    // Function to coneect mqtt to specific ip from socket
-    socket.on('mqttConnect', payload => {
-        client = mqtt.connect(payload.toString())
-        client.on('connect', () => {
-            client.subscribe('monitoring', () => {
-                console.log(`Subscribe to topic monitoring successful ${payload.toString()}`)
-            })
-        })
-        console.log('front connected')
-        client.on('message', (topic, payload) => {
-            let data = parsePayload(payload)
-            socket.emit(topic, data)
-        })
-    })
-
-    socket.on('monitoring', payload => {
+    socket.on('arduino', payload => {
+        console.log('mqtt publish', payload)
         var data = Buffer.from(JSON.stringify(payload));
-        client.publish('monitoring', data)
+        client.publish('arduino', data)
+    })
+    client.on('message', (topic, payload) => {
+        // mqtt pub -t 'arduino' -h localhost -m '{"pin":2,"action":0}'
+        let data = parsePayload(payload)
+        console.log('socket emit', topic, data)
+        socket.emit(topic, data)
     })
 })
 

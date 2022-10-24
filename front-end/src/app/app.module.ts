@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbListModule, NbUserModule, NbCardModule, NbIconModule, NbToggleModule, } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+const config: SocketIoConfig = { url: 'http://localhost:1884', options: {} };
 
 @NgModule({
   declarations: [
@@ -17,7 +19,6 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbEvaIconsModule,
-    // RouterModule, // RouterModule.forRoot(routes, { useHash: true }), if this is your app.module
     NbSidebarModule.forRoot(),
     NbButtonModule,
     NbListModule,
@@ -25,6 +26,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbCardModule,
     NbIconModule,
     NbToggleModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [],
   bootstrap: [AppComponent]

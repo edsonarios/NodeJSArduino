@@ -6,13 +6,13 @@ const server = new mosca.Server({
 	port: portServer
 })
 const { parsePayload } = require('./utils')
-const db = require('data-base')
-const config = require('../dataBase/config')
+// const db = require('data-base')
+// const config = require('../dataBase/config')
 let Sensor
 
 server.on('ready', async () => {
-	const services = await db(config.dbDatas)
-	Sensor = services.Sensor
+	// const services = await db(config.dbDatas)
+	// Sensor = services.Sensor
 	console.log(`Server ready in port: ${portServer}`)
 })
 
@@ -33,15 +33,15 @@ server.on('published', async (packet, client) => {
 	}
 
 	// mqtt pub -t 'sensor' -h localhost -m '{"humidity":43.40,"temperature":17.00}'
-	if (data != null && packet.topic == 'sensor') {
-		try {
-			await Sensor.create({
-				"humidity": data.humidity,
-				"temperature": data.temperature
-			})
-			console.log("\tSensor saved", data.humidity, data.temperature)
-		} catch {
-			console.log('Failed sensor saved')
-		}
-	}
+	// if (data != null && packet.topic == 'arduino' && data.type == 'sensor') {
+	// 	try {
+	// 		await Sensor.create({
+	// 			"humidity": data.humidity,
+	// 			"temperature": data.temperature
+	// 		})
+	// 		console.log("\tSensor saved", data.humidity, data.temperature)
+	// 	} catch {
+	// 		console.log('Failed sensor saved')
+	// 	}
+	// }
 })
