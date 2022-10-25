@@ -1,5 +1,5 @@
 export interface SocketResponse {
     type:string
-    pin: number
-    action: number
+    data1: number
+    data2: number
 }

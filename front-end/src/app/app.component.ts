@@ -3,11 +3,13 @@ import { SocketService } from './socket.service'
 import { Subscription } from "rxjs"
 import { SocketResponse } from "./model/socketSensorResponse"
 import { Chart, registerables } from 'chart.js'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   public chart: Chart
   public charId: string
@@ -21,26 +23,23 @@ export class AppComponent {
     { name: 'Postgres', title: 'Data Base', picture: '../assets/post.jpg' },
     { name: 'WebSockets', title: 'socket.io', picture: '../assets/socket.jpg' },
     { name: 'Angular', title: 'Angular.js or AngularJS', picture: '../assets/angular.jpg' },
+    { name: 'AWS', title: 'Amazon Web Services', picture: '../assets/aws.jpg' },
   ]
 
-  OnOff = false
   @Input() actuatorState: boolean = false
-  @Input() actuatorControl: boolean = true
 
-  control(state: boolean) {
-    let value = state ? 1 : 0
+  control(event: boolean) {
+    let value = event ? 1 : 0
     const socketResponse: SocketResponse = {
       type: 'arduino',
-      pin: 2,
-      action: value,
+      data1: 2,
+      data2: value,
     }
-    console.log("control", state)
     this.socketService.sendArduino(socketResponse)
-    this.actuatorState = !this.actuatorState
+    this.actuatorState = event
   }
 
   constructor(private socketService: SocketService) {
-    this.actuatorControl = false
     this.chart = {} as Chart
     Chart.register(...registerables)
     this.charId = 'graphic'
@@ -54,6 +53,7 @@ export class AppComponent {
   ngAfterViewInit(): void {
     this.prepareChart()
   }
+
   prepareChart(): void {
     let humidity = {
       label: "Humidity",
@@ -81,6 +81,7 @@ export class AppComponent {
       data: data,
     })
   }
+
   connectToSocket(): void {
     this.socketSubscription = this.socketService
       .listen('arduino')
@@ -91,16 +92,15 @@ export class AppComponent {
 
   }
 
-
   updateButton(socketActuator: SocketResponse): void {
     if (socketActuator.type == 'arduino') {
-      this.actuatorControl = socketActuator.action == 1 ? true : false
+      this.actuatorState = socketActuator.data2 == 1 ? true : false
     }
   }
 
   updateGraphic(socketActuator: SocketResponse): void {
     if (socketActuator.type == 'sensor') {
-      this.realTimeData(socketActuator.pin, socketActuator.action)
+      this.realTimeData(socketActuator.data1, socketActuator.data2)
     }
   }
 

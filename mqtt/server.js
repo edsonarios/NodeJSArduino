@@ -32,16 +32,16 @@ server.on('published', async (packet, client) => {
 		console.log('\n', data)
 	}
 
-	// mqtt pub -t 'sensor' -h localhost -m '{"humidity":43.40,"temperature":17.00}'
-	// if (data != null && packet.topic == 'arduino' && data.type == 'sensor') {
-	// 	try {
-	// 		await Sensor.create({
-	// 			"humidity": data.humidity,
-	// 			"temperature": data.temperature
-	// 		})
-	// 		console.log("\tSensor saved", data.humidity, data.temperature)
-	// 	} catch {
-	// 		console.log('Failed sensor saved')
-	// 	}
-	// }
+	// mqtt pub -t 'sensor' -h localhost -m '{"type":"sensor", "humidity":43.40,"temperature":17.00}'
+	if (data != null && packet.topic == 'arduino' && data.type == 'sensor') {
+		try {
+			await Sensor.create({
+				"humidity": data.data1,
+				"temperature": data.data2
+			})
+			console.log("\tSensor saved", data.data1, data.data2)
+		} catch {
+			console.log('Failed sensor saved')
+		}
+	}
 })
