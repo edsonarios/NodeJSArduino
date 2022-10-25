@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NbThemeModule, NbSidebarModule, NbLayoutModule, NbButtonModule, NbListModule, NbUserModule, NbCardModule, NbIconModule, NbToggleModule, } from '@nebular/theme'
 import { NbEvaIconsModule } from '@nebular/eva-icons'
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io'
-const config: SocketIoConfig = { url: 'http://localhost:1884', options: {} }
+import { environment } from '../environments/environment.prod'
+const config: SocketIoConfig = { url: `http://${environment.host}:1884`, options: {} }
 
 @NgModule({
   declarations: [

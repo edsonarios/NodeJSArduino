@@ -37,7 +37,7 @@ client.subscribe('arduino')
 
 board.on('ready', function () {
     client.on('message', (topic, payload) => {
-        // mqtt pub -t 'arduino' -h localhost -m '{"pin":2,"action":0}'
+        // mqtt pub -t 'arduino' -h localhost -m '{"type":"arduino","pin":2,"action":1}'
         let mqttData = parsePayload(payload)
         if (mqttData.type == 'arduino') {
             console.log(mqttData)

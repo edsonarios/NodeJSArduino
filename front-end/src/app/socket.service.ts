@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core'
 import { Socket, SocketIoConfig } from 'ngx-socket-io'
 import { Observable } from 'rxjs'
-import { SocketResponse } from "./model/socketSensorResponse"
+import { SocketResponse } from './model/socketSensorResponse'
+import { environment } from '../environments/environment.prod'
 
 @Injectable({ providedIn: 'root' })
 export class SocketService {
     config: SocketIoConfig = {
-        url: 'http://localhost:1884',
+        url: `http://${environment.host}:1884`,
         options: {},
     }
 

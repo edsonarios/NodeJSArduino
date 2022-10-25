@@ -34,7 +34,7 @@ io.on('connection', (socket) => {
         client.publish('arduino', data)
     })
     client.on('message', (topic, payload) => {
-        // mqtt pub -t 'arduino' -h localhost -m '{"pin":2,"action":0}'
+        // mqtt pub -t 'arduino' -h localhost -m '{"type":"arduino","pin":2,"action":1}'
         let data = parsePayload(payload)
         console.log('socket emit', topic, data)
         socket.emit(topic, data)
