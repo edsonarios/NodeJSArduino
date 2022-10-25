@@ -40,7 +40,7 @@ board.on('ready', function () {
         let mqttData = parsePayload(payload)
         if (mqttData.type == 'arduino') {
             console.log(mqttData)
-            this.digitalWrite(mqttData.pin, mqttData.action)
+            this.digitalWrite(mqttData.data1, mqttData.data2)
         }
     })
 })

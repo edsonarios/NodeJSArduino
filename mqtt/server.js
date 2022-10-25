@@ -6,13 +6,13 @@ const server = new mosca.Server({
 	port: portServer
 })
 const { parsePayload } = require('./utils')
-// const db = require('data-base')
-// const config = require('../dataBase/config')
+const db = require('data-base')
+const config = require('../dataBase/config')
 let Sensor
 
 server.on('ready', async () => {
-	// const services = await db(config.dbDatas)
-	// Sensor = services.Sensor
+	const services = await db(config.dbDatas)
+	Sensor = services.Sensor
 	console.log(`Server ready in port: ${portServer}`)
 })
 
