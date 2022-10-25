@@ -1,9 +1,7 @@
 import { Component, Input } from '@angular/core'
-import { Injectable } from '@angular/core'
-import { Socket, SocketIoConfig } from 'ngx-socket-io'
 import { SocketService } from './socket.service'
-import { Subscription, take } from "rxjs"
-import { SocketResponse, SocketLastValue } from "./model/socketSensorResponse"
+import { Subscription } from "rxjs"
+import { SocketResponse } from "./model/socketSensorResponse"
 import { Chart, registerables } from 'chart.js'
 @Component({
   selector: 'app-root',
@@ -13,18 +11,16 @@ import { Chart, registerables } from 'chart.js'
 export class AppComponent {
   public chart: Chart
   public charId: string
-  config: SocketIoConfig = {
-    url: 'http://localhost:1884',
-    options: {},
-  }
   private socketSubscription = new Subscription()
   title = 'NodeJs with Arduino'
-  users: { name: string, title: string }[] = [
-    { name: 'Carla Espinosa', title: 'Nurse' },
-    { name: 'Bob Kelso', title: 'Doctor of Medicine' },
-    { name: 'Janitor', title: 'Janitor' },
-    { name: 'Perry Cox', title: 'Doctor of Medicine' },
-    { name: 'Ben Sullivan', title: 'Carpenter and photographer' },
+  users: { name: string, title: string, picture: string }[] = [
+    { name: 'Arduino', title: '', picture: '../assets/arduino-logo.jpg' },
+    { name: 'Johnny-Five', title: '', picture: '../assets/jf.jpg' },
+    { name: 'Serial Port', title: '', picture: '../assets/serial.jpg' },
+    { name: 'MQTT', title: 'MQ Telemetry Transport', picture: '../assets/mqtt-logo.svg' },
+    { name: 'Postgres', title: 'Data Base', picture: '../assets/post.jpg' },
+    { name: 'WebSockets', title: 'socket.io', picture: '../assets/socket.jpg' },
+    { name: 'Angular', title: 'Angular.js or AngularJS', picture: '../assets/angular.jpg' },
   ]
 
   OnOff = false

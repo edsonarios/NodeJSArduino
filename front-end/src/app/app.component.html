@@ -1,38 +1,52 @@
 <nb-layout>
 
-  <nb-layout-header fixed>{{title}}</nb-layout-header>
+  <nb-layout-header fixed>
+    <nb-card status="success">
+
+      <nb-card-header accent="danger">{{title}}</nb-card-header>
+    </nb-card>
+
+    <nb-card style="text-align: center">
+      <nb-card-body>
+
+        <nb-user size="large" name="Share Knowledge" title="5th Cycle" color="#cccccc">
+        </nb-user>
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-header>
 
   <nb-sidebar>
     <nb-list>
       <nb-list-item *ngFor="let user of users">
-        <nb-user [name]="user.name" [title]="user.title">
+        <nb-user size="giant" [name]="user.name" [title]="user.title" [picture]="user.picture">
         </nb-user>
       </nb-list-item>
     </nb-list>
   </nb-sidebar>
 
   <nb-layout-column>
-    <nb-card status="success">
+    <nb-card status="success" size="tiny">
 
-      <nb-card-header>Light</nb-card-header>
+      <nb-card-header style="text-align: center">Light</nb-card-header>
       <nb-card-body>
-        <!-- <nb-icon class="nb-lightbulb" icon="star" [options]="{ animation: { type: 'zoom' } }"></nb-icon> -->
-        <!-- <nb-toggle [(ngModel)]="toggleNgModel">Toggle with NgModel</nb-toggle> -->
         <nb-toggle checked={{actuatorControl}} status="success" (click)="control(!actuatorState)"></nb-toggle>
-        <!-- <nb-toggle  (click)="control()"></nb-toggle> -->
+
       </nb-card-body>
     </nb-card>
   </nb-layout-column>
 
   <nb-layout-column>
-    Page Content
+    <nb-card status="primary">
+      <nb-card-header style="text-align: center">Sensors</nb-card-header>
+    </nb-card>
     <!-- <section class="graph-line-container"> -->
-      <canvas [id]="charId"></canvas>
+    <canvas [id]="charId"></canvas>
     <!-- </section> -->
   </nb-layout-column>
 
   <nb-layout-footer>
-    footer
+    Edson Añawaya Rios - edsonrios9@gmail.com
   </nb-layout-footer>
 
 </nb-layout>
